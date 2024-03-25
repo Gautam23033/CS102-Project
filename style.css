@@ -41,7 +41,7 @@ body, h1, h2, h3, p, ul, li {
   }
   
   .half:hover {
-    filter: brightness(110%);
+    filter: brightness(130%);
   }
   
   #leftHalf {
