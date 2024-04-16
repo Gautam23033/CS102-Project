@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Buddy</title>
+    <style>
+        *{
+            margin:0;
+        }
+        .bod{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            width: 200px;
+            height: auto;
+            padding: 40px;
+            border-radius: 10px;
+            background-image: url(goa.jpg);
+            opacity: 0.75;
+            font-weight: bolder;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index:-100;
+        }
+        .body{
+            font-family: Ariel, sans-serif;
+            background-color: alicebluea;
+            background-color: antiquewhite;
+            margin: 0%;
+            padding: 0%;
+        }
+        .navbar{
+            background-color: black;
+            height: 60px;
+            font-family: Arial, Helvetica, sans-serif ;
+            font-size: 40px;
+            position: fixed;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            display: flex;
+            z-index: +1;
+        }
+        
+        .linkbutton{
+            text-decoration: none;
+            font-size: large;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 5px;
+            margin: 15px;
+            color: #5CDB95;
+        }
+            
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html" class="linkbutton">Map Buddy</a>
+        <a href="" class="linkbutton">Tour Spots</a>
+        <a href="register.html" class="linkbutton">Register</a>
+        <a href="" class="linkbutton">About us</a>
+        <a href="login.html" class="linkbutton">Login</a>
+    </div>
+
+
+
+
+    <div class="bod">
+    <div class="form">
+        <video autoplay muted loop>
+            <source src="vid.mp4" type="video/mp4">
+        </video>
+    <form name="submit-to-google-sheet">
+        <h1>login</h1>
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+        <label>Phone Number:</label><br>
+        <input type="value" name="pnumber" required><br><br>
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
+        <label>Gender</label><br>
+        <input type="radio" name="gender" value="male"><label>Male</label>
+        <input type="radio" name="gender" value="female"><label>Female</label><br>
+        <input type="submit" name="submit">  
+        <span id="success"></span>
+    </form>
+    </div>
+    </div>
+
+
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxLyVa_r8J0aSdGDAu8aZvq_HkRG2i3zVRijWiO0U-xjgxLL0zy-trOKMupu8E1JDrzkA/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const success = document.getElementById('success');
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                success.innerHTML="data successfully submitted"
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+    
+</body>
+</html>
